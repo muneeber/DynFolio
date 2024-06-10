@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire;
 
 use App\Models\Icon;
@@ -47,28 +46,28 @@ class HeroEdit extends Component
         $settingsChanged = false;
 
         $settingName = Setting::where('key', 'name')->first();
-        if ($settingName->value !== $this->name) {
+        if ($settingName && $settingName->value !== $this->name && $this->name !== null) {
             $settingName->value = $this->name;
             $settingName->save();
             $settingsChanged = true;
         }
 
         $settingHandle = Setting::where('key', 'handle')->first();
-        if ($settingHandle->value !== $this->handle) {
+        if ($settingHandle && $settingHandle->value !== $this->handle && $this->handle !== null) {
             $settingHandle->value = $this->handle;
             $settingHandle->save();
             $settingsChanged = true;
         }
 
         $settingCta = Setting::where('key', 'cta')->first();
-        if ($settingCta->value !== $this->cta) {
+        if ($settingCta && $settingCta->value !== $this->cta && $this->cta !== null) {
             $settingCta->value = $this->cta;
             $settingCta->save();
             $settingsChanged = true;
         }
 
         $settingIcon = Setting::where('key', 'header_icon')->first();
-        if ($settingIcon->value !== $this->icon) {
+        if ($settingIcon && $settingIcon->value !== $this->icon && $this->icon !== null) {
             $settingIcon->value = $this->icon;
             $settingIcon->save();
             $settingsChanged = true;
@@ -76,12 +75,12 @@ class HeroEdit extends Component
 
         if ($this->image) {
             $this->validate([
-                'image' => 'required|image|max:1024|mimes:jpeg,png',
+                'image' => 'required|image|max:1024|mimes:jpeg,png,webp',
             ]);
 
             $this->header_image = $this->image->store('photos', 'public');
             $settingHeaderImage = Setting::where('key', 'header_image')->first();
-            if ($settingHeaderImage->value !== $this->header_image) {
+            if ($settingHeaderImage && $settingHeaderImage->value !== $this->header_image && $this->header_image !== null) {
                 $settingHeaderImage->value = $this->header_image;
                 $settingHeaderImage->save();
                 $settingsChanged = true;
@@ -90,17 +89,18 @@ class HeroEdit extends Component
 
         if ($settingsChanged) {
             $this->dataFetch();
+            $this->redirect(route('welcome'));
             session()->flash('success', 'Settings updated successfully!');
         }
     }
 
     public function dataFetch()
     {
-        $this->name = Setting::where('key', 'name')->first()->value;
-        $this->handle = Setting::where('key', 'handle')->first()->value;
-        $this->cta = Setting::where('key', 'cta')->first()->value;
-        $this->header_image = Setting::where('key', 'header_image')->first()->value;
-        $this->header_icon = Icon::find(Setting::where('key', 'header_icon')->first()->value)->svg_code;
+        $this->name = Setting::where('key', 'name')->first()->value ?? '';
+        $this->handle = Setting::where('key', 'handle')->first()->value ?? '';
+        $this->cta = Setting::where('key', 'cta')->first()->value ?? '';
+        $this->header_image = Setting::where('key', 'header_image')->first()->value ?? '';
+        $this->header_icon = Icon::find(Setting::where('key', 'header_icon')->first()->value)->svg_code ?? '';
     }
 
     public function render()
