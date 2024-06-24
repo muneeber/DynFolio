@@ -23,3 +23,42 @@ DynFolio is a no-code solution for setting up a professional portfolio. Perfect 
    ```bash
    git clone https://github.com/muneeber/DynFolio.git
    cd DynFolio
+2. **Install PHP dependencies:**
+   ```bash
+   composer install
+3. **Install JavaScript dependencies:**
+    ```bash
+    npm install
+4. **Build the assets:**
+   ```bash
+   npm run build
+5. **Set up environment variables:**
+     . Copy the .env.example file to .env:
+    ```bash
+    cp .env.example .env
+  . Configure your database and other environment settings in the .env file.
+
+
+6. **Generate application key:**
+    ```bash
+    php artisan key:generate
+
+
+
+7. **Import Database:**
+   import sql file in php my admin
+
+8. **Create a symbolic link to the storage directory:**
+    ```bash
+    php artisan storage:link
+
+9. **Run the application:**
+    ```bash
+    php artisan serve
+
+ 
+
+
+ 
+   
+    
