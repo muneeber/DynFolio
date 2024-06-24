@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ContactShow;
 use App\Livewire\FooterEdit;
 use App\Livewire\HeroEdit;
 use App\Livewire\OtherProjectsEdit;
@@ -22,6 +23,7 @@ Route::view('dashboard', 'dashboard')
     Route::get('edit/projects/small', SmallProjectsEdit::class)->middleware(['auth', 'verified'])->name('small-projects-edit');
     Route::get('edit/whatIKnow', WhatIKnowEdit::class)->middleware(['auth', 'verified'])->name('whatiknow-edit');
     Route::get('edit/footer', FooterEdit::class)->middleware(['auth', 'verified'])->name('footer-edit');
+    Route::get('contact', ContactShow::class)->middleware(['auth', 'verified'])->name('contact-show');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

@@ -16,7 +16,7 @@ class HeroEdit extends Component
     public $cta;
     public $header_image;
     public $icons;
-    public $icon;
+    public $icon=1;
     public $header_icon;
 
     #[Validate('image|max:1024|mimes:jpeg,png')]

@@ -1,5 +1,5 @@
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-    <div class="flex  rounded-lg w-full  bg-[url('https://ez-snippet.vercel.app/images/cover.jpeg')] bg-no-repeat bg-cover">
+    <div style=" background-image: url('{{ asset('images/cover.jpeg') }}');" class="flex  rounded-lg w-full  bg-[url('./hi')] bg-no-repeat bg-cover">
         <div
             class=" flex justify-center md:rounded -ld  overflow-hidden md:px-10 py-5 bg-blur backdrop-filter backdrop-blur-md w-full gap-2 md:gap-10">
             <div class="">
